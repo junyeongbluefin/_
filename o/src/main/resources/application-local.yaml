@@ -1,0 +1,8 @@
+server:
+  port: 9091
+
+spring:
+  cloud:
+    openservicebroker:
+      apiVersion: 1.01
+      api-version-check-enabled: false # default is true

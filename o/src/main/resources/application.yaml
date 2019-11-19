@@ -1,0 +1,19 @@
+server:
+  port: 8080
+
+spring:
+  cloud:
+    openservicebroker:
+      catalog:
+        services:
+          - id: example-service
+            name: example
+            description: A simple example
+            bindable: true
+            tags:
+              - example
+              - tags
+            plans:
+              - id: simple-plan
+                name: standard
+                description: A simple plan
