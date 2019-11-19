@@ -7,7 +7,3 @@ spring:
         git:
           uri: https://github.com/junyeongbluefin/c
           skipSslValidation: true
-          repos:
-            local:
-              pattern: local*
-              uri: https://github.com/junyeongbluefin/c
