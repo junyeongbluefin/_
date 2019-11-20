@@ -5,56 +5,61 @@ import java.util.Map;
 
 import org.springframework.cloud.servicebroker.service.ServiceInstanceService;
 import org.springframework.stereotype.Service;
+import reactor.core.publisher.Mono;
 
 @Service
 public class ExampleServiceInstanceService implements ServiceInstanceService {
 
     @Override
-    public CreateServiceInstanceResponse createServiceInstance(CreateServiceInstanceRequest request) {
+    public Mono<CreateServiceInstanceResponse> createServiceInstance(CreateServiceInstanceRequest request) {
         String serviceInstanceId = request.getServiceInstanceId();
         String planId = request.getPlanId();
         Map<String, Object> parameters = request.getParameters();
-        String dashboardUrl = ""; /* construct a dashboard URL */
-        return CreateServiceInstanceResponse.builder()
+        String dashboardUrl = "https://dashboard.jun.com"; /* construct a dashboard URL */
+
+        System.out.println("New requested saved properly");
+
+        return Mono.just(CreateServiceInstanceResponse.builder()
+                .instanceExisted(true)
                 .dashboardUrl(dashboardUrl)
                 .async(true)
-                .build();
+                .build());
     }
 
     @Override
-    public GetServiceInstanceResponse getServiceInstance(GetServiceInstanceRequest request) {
+    public Mono<GetServiceInstanceResponse> getServiceInstance(GetServiceInstanceRequest request) {
         String serviceInstanceId = request.getServiceInstanceId();
         String dashboardUrl = ""; /* retrieve dashboard URL */
-        return GetServiceInstanceResponse.builder()
+        return Mono.just(GetServiceInstanceResponse.builder()
                 .dashboardUrl(dashboardUrl)
-                .build();
+                .build());
     }
 
     @Override
-    public GetLastServiceOperationResponse getLastOperation(GetLastServiceOperationRequest request) {
+    public Mono<GetLastServiceOperationResponse> getLastOperation(GetLastServiceOperationRequest request) {
         String serviceInstanceId = request.getServiceInstanceId();
-        return GetLastServiceOperationResponse.builder()
+        return Mono.just(GetLastServiceOperationResponse.builder()
                 .operationState(OperationState.SUCCEEDED)
-                .build();
+                .build());
     }
 
     @Override
-    public UpdateServiceInstanceResponse updateServiceInstance(UpdateServiceInstanceRequest request) {
+    public Mono<UpdateServiceInstanceResponse> updateServiceInstance(UpdateServiceInstanceRequest request) {
         String serviceInstanceId = request.getServiceInstanceId();
         String planId = request.getPlanId();
         String previousPlan = request.getPreviousValues().getPlanId();
         Map<String, Object> parameters = request.getParameters();
-        return UpdateServiceInstanceResponse.builder()
+        return Mono.just(UpdateServiceInstanceResponse.builder()
                 .async(true)
-                .build();
+                .build());
     }
 
     @Override
-    public DeleteServiceInstanceResponse deleteServiceInstance(DeleteServiceInstanceRequest request) {
+    public Mono<DeleteServiceInstanceResponse> deleteServiceInstance(DeleteServiceInstanceRequest request) {
         String serviceInstanceId = request.getServiceInstanceId();
         String planId = request.getPlanId();
-        return DeleteServiceInstanceResponse.builder()
+        return Mono.just(DeleteServiceInstanceResponse.builder()
                 .async(true)
-                .build();
+                .build());
     }
 }

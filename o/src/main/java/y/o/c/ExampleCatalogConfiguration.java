@@ -1,4 +1,4 @@
-package y.o;
+package y.o.c;
 
 import org.springframework.cloud.servicebroker.model.catalog.Catalog;
 import org.springframework.cloud.servicebroker.model.catalog.Plan;
